@@ -1,0 +1,7 @@
+.idea/
+
+scheme/
+wsdl/
+types/funcs.go
+wsdlprocess.go
+main/
