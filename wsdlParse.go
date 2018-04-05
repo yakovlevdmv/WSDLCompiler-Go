@@ -75,11 +75,14 @@ func write(data string, fileName string)  {
 
 func GetAllOperations( doc *etree.Document ) *[]string {
 	var allOperations []string
-	portType := doc.FindElement("//portType")
+	portTypes := doc.FindElements("//portType")
 	//fmt.Println(portType)
-	for _, operation := range portType.SelectElements("wsdl:operation") {
-		operationName := operation.SelectAttr("name").Value
-		allOperations = append(allOperations, operationName)
+	for _, portType := range portTypes {
+		for _, operation := range portType.SelectElements("wsdl:operation") {
+			operationName := operation.SelectAttr("name").Value
+			allOperations = append(allOperations, operationName)
+		}
 	}
+
 	return &allOperations
 }
